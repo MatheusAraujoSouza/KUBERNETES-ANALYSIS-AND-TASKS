@@ -15,10 +15,6 @@ Kubernetes was developed to solve the problem of managing containerized applicat
 
 Some specific problems that Kubernetes can solve include:
 
-
-
-
-
 <li>
 Orchestrating container deployments: Kubernetes can automate the deployment of containers across a cluster of nodes, making it easier to manage and scale containerized applications.</li>
 <li>Scaling applications: Kubernetes can automatically scale applications up or down based on demand, ensuring that applications have enough resources to handle traffic.</li>
@@ -71,5 +67,27 @@ The department manager is like the kubelet, responsible for managing the workers
 Now imagine each employee within the department is like a pod in Kubernetes. The pod is the smallest unit of deployment in Kubernetes, containing one or more containers that run a specific application. Each employee has their own specific skills and responsibilities, and they work together to complete a task or project. Similarly, each pod may contain different containers that work together to provide the desired functionality.
 
 Finally, the kubeproxy is like the company's IT department, responsible for managing network traffic between departments. They ensure that all communication between departments is secure and efficient. In Kubernetes, the kubeproxy is responsible for managing network traffic between pods and ensuring that each pod can communicate with others.
+
+# Second picture about the architecture of Kubernetes: 
+
+<p><img src="./img/kubernetes-images-componentes-2.png"></p>
+
+Docker can talk to your application in a few different ways, depending on how you have set up your application and your Docker containers.
+
+One common approach is to use Docker's networking features to connect your application container to a network, and then use that network to communicate with the application. For example, you might create a Docker network and start your application container and your database container on that network. You can then configure your application to use the database's IP address or hostname to connect to it, just as you would in a non-Dockerized environment.
+
+Another approach is to use Docker's volume features to share files between your application container and your host machine or other containers. For example, you might mount a directory on your host machine into your application container using a Docker volume, and then write files to that directory from your application. Those files would be visible on your host machine, allowing you to interact with them directly.
+
+Finally, you can also use Docker's port mapping features to expose specific ports on your application container to the host machine or to other containers. For example, you might start your application container with port 8080 exposed, and then use your web browser to connect to http://localhost:8080 to access your application.
+
+Overall, Docker provides a range of features for connecting your application with other containers, with the host machine, and with external systems. The specifics of how you set up these connections will depend on the needs of your application and your infrastructure.
+
+## Comunication between containers
+
+Containers within the same pod can communicate with each other using localhost since they share the same network namespace. So, if there are multiple containers within a pod, they can communicate with each other directly via the loopback interface, without the need for network communication.
+
+When communicating between pods, Kubernetes uses the concept of services. Services provide a stable IP address and DNS name that can be used by other pods to communicate with the pods running the application containers. Kubernetes creates a virtual IP address for each service, and any pod within the cluster can access this IP address to communicate with the pods associated with the service. This allows pods to communicate with each other across the network without having to know the specific IP addresses of the pods they want to communicate with.
+
+So, to summarize, containers within the same pod can communicate with each other using localhost, while communication between pods is achieved through the use of services, which provide a stable IP address and DNS name for pods to communicate with each other.
 
 
