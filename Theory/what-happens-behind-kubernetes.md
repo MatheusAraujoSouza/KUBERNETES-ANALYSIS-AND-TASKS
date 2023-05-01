@@ -48,6 +48,8 @@ Together, these components make up the control plane, which is responsible for m
 Each worker node in a Kubernetes cluster can be a physical or virtual machine. Kubernetes is designed to be a flexible and portable platform that can be run on a variety of infrastructures, including on-premises data centers, public clouds, and hybrid cloud environments. The worker nodes in a Kubernetes cluster are responsible for running and managing the containers that make up the applications. These nodes can be scaled up or down based on the needs of the applications, and Kubernetes provides a number of tools to manage the cluster and its resources efficiently.
 A worker node is a node in a Kubernetes cluster that is responsible for running the containers. Each worker node runs a container runtime, such as Docker or CRI-O, and a kubelet, which is an agent that communicates with the control plane to manage the node's containers.
 
+## kubelet
+
 The kubelet is responsible for the following tasks on a worker node:
 
 Communicating with the API server to receive container manifest and pod assignments.
@@ -55,6 +57,9 @@ Pulling container images from a container registry, such as Docker Hub.
 Running the containers specified in the pod manifests.
 Monitoring the containers' health and reporting any issues to the control plane.
 Cleaning up any containers or pods that are no longer needed.
+
+## Kube-proxy
+
 Kube-proxy is another component of the worker node that is responsible for implementing Kubernetes services. A service is a set of pods that are logically grouped together and exposed to the network through a single IP address. Kube-proxy ensures that incoming network traffic to the service is directed to the appropriate pod in the service.
 
 A pod is the smallest and simplest unit in the Kubernetes object model. It represents a single instance of a running process in a cluster. A pod can contain one or more containers, which are tightly coupled and share the same network namespace, storage volumes, and other resources. Pods are ephemeral, meaning that they can be created, deleted, or replaced at any time by the Kubernetes control plane.
